@@ -1,27 +1,27 @@
 name: JD Sports Monitor
 
 on:
-workflow_dispatch:
-schedule:
-- cron: '*/5 * * * *'
+  workflow_dispatch:
+  schedule:
+    - cron: '*/5 * * * *'
 
 jobs:
-check:
-runs-on: ubuntu-latest
+  check:
+    runs-on: ubuntu-latest
 
-steps:
-- name: Pobierz pliki
-uses: actions/checkout@v4
+    steps:
+      - name: Pobierz pliki
+        uses: actions/checkout@v4
 
-- name: Ustaw Python
-uses: actions/setup-python@v5
-with:
-python-version: '3.11'
+      - name: Ustaw Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-- name: Instaluj wymagania
-run: pip install -r requirements.txt
+      - name: Instaluj wymagania
+        run: pip install -r requirements.txt
 
-- name: Sprawdź produkt
-run: python monitor.py
-env:
-DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: Sprawdź produkt
+        run: python monitor.py
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
